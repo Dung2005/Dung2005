@@ -16,6 +16,9 @@
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
 ### 😂Random Dev Meme
+<a href="https://visitcount.itsvg.in">
+  <img src="https://visitcount.itsvg.in/api?id=Dung2005&label=Profile%20Views&pretty=false" />
+</a>
 <img src="https://random-memer.herokuapp.com/" width="512px"/>
 
 ---
