@@ -83,6 +83,7 @@ void resetDevice() {
   Serial.println("BLE notification sent: " + message);
   //gui thong bao BLE
   sendBLEData("RESET", "đã xoá thông tin xác thực của thiết bị");
+
   Serial.println("da hoan tat thiet lap lai thiet bi, dang khoi dong lai...");
   // Restart the device
   ESP.restart();
@@ -94,7 +95,7 @@ void sendBLEData(String status, String message) {
 
   String jsonString;
   serializeJson(doc, jsonString);  // Serialize JSON to string
-
+  client.publish("v1/devices/me/attributes", jsonString.c_str());
   pCharacteristic->setValue(jsonString.c_str());  // Set BLE notification value
   pCharacteristic->notify();                      // Send BLE notification
   Serial.println("BLE notification sent: " + jsonString);
@@ -250,6 +251,7 @@ void onBLEReceive(String jsonData) {
   if (doc.containsKey("ssid") && doc.containsKey("password")) {
     strcpy(wifiSSID, doc["ssid"]);
     strcpy(wifiPass, doc["password"]);
+    strcpy(mqttUser, doc["mqttUser"]);
     connectToWiFi(wifiSSID, wifiPass);
 
     if (wifiConnected) connectToMQTT();
